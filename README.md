@@ -8,7 +8,7 @@ dnsmasq is a small and lightweight program for DNS, DHCP, router advertisement, 
 
 More information can be found here: <http://www.thekelleys.org.uk/dnsmasq/doc.html>
 
-# Running this Docker image
+## Running this Docker image
 
 There are many uses for dnsmasq and can be ran in various configurations using different arguments.  Pleasae refer to the documentation regarding dnsmasq on the page mentioned in the previous section to run dnsmasq.  All arguments passed to the docker image will be passed directly to the dnsmasq executable.
 
@@ -67,7 +67,7 @@ To make the final build as small as possible, it then builds the image from scra
 
 The end result is a Docker image with only the files necessary to run dnsmasq.  Thus this image is very small (about 340kB at the time of writing).
 
-# Building/Advanced Usage
+## Building/Advanced Usage
 
 By default, this Docker image uses the latest dnsmasq branch (master) to build the dnsmasq binary file.  However, you may build this image with a different branch/tag by specifying an alternate build-argument.
 
@@ -80,4 +80,3 @@ As noted above, you can specify a different dnsmasq branch/tag to pull/checkout 
 This may be useful for debugging or if your image requires a specific version of the dnsmasq binary file.
 
 More information on using Docker build-arguments can be found here:  [Set build-time variables (--build-arg)](https://docs.docker.com/engine/reference/commandline/build/#set-build-time-variables---build-arg)
-
