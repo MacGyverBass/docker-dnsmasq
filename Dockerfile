@@ -1,5 +1,5 @@
-# Compile dnsmasq as a static binary (Tested working on Alpine v3.11)
-FROM	alpine:3.11 AS compile
+# Compile dnsmasq as a static binary (Tested working on Alpine v3.12)
+FROM	alpine:3.12 AS compile
 
 # Install all necessary packages for compiling dnsmasq
 RUN	apk --no-cache add	\
@@ -8,7 +8,7 @@ RUN	apk --no-cache add	\
 		linux-headers	\
 		gettext	\
 		pkgconf	\
-		python
+		python3
 
 # Define build argument for dnsmasq branch to clone/checkout
 ARG	DNSMASQ_BRANCH="master"
