@@ -8,19 +8,23 @@ RUN	apk --no-cache add	\
 		linux-headers	\
 		gettext	\
 		pkgconf	\
-		python3
+		python3	\
+		upx
 
 # Define build argument for dnsmasq branch to clone/checkout
 ARG	DNSMASQ_BRANCH="master"
 
 # Clone the dnsmasq repo
-RUN     git clone --branch "${DNSMASQ_BRANCH}" --single-branch "http://thekelleys.org.uk/git/dnsmasq.git" /dnsmasq.git/
+RUN	git clone --branch "${DNSMASQ_BRANCH}" --single-branch "http://thekelleys.org.uk/git/dnsmasq.git" /dnsmasq.git/
 
 # Compile dnsmasq statically
 RUN	make -C /dnsmasq.git/ CFLAGS="-Os -nostdlib" LDFLAGS="-Os -static -no-pie"
 
 # Strip binary
 RUN	strip -s /dnsmasq.git/src/dnsmasq
+
+# Compress the binary
+RUN	upx -9 /dnsmasq.git/src/dnsmasq
 
 
 # Build from scratch for smallest possible secure build
