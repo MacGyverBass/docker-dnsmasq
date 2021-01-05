@@ -26,16 +26,16 @@ RUN	strip -s /dnsmasq.git/src/dnsmasq
 # Compress the binary
 RUN	upx -9 /dnsmasq.git/src/dnsmasq
 
+# Copy overlay folder.
+# This contains pre-made /etc/group and /etc/passwd for user/group "nobody"/"nogroup".
+COPY	overlay/ /dnsmasq-root/
+
 
 # Build from scratch for smallest possible secure build
 FROM	scratch
 
-# Copy the previously compiled dnsmasq file
-COPY	--from=compile /dnsmasq.git/src/dnsmasq /dnsmasq
-
-# Copy overlay folder.
-# This contains pre-made /etc/group and /etc/passwd for user/group "nobody".
-COPY	overlay/ /
+# Copy the previously compiled dnsmasq file and previously copied overlay folder
+COPY	--from=compile /dnsmasq.git/src/dnsmasq /dnsmasq-root/ /
 
 # The folder "/var/lib/misc/" is needed for the dnsmasq.leases file.  (Note that this isn't required if --leasefile-ro is used.)
 # The folder "/var/run/" is needed for the dnsmasq.pid file.  (Note that this isn't require if --no-daemon is used.)
