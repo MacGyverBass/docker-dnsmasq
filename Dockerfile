@@ -1,5 +1,5 @@
 # Compile dnsmasq as a static binary (Tested working on Alpine v3.12)
-FROM	alpine:3.12 AS compile
+FROM	alpine:3.13 AS compile
 
 # Install all necessary packages for compiling dnsmasq
 RUN	apk --no-cache add	\
