@@ -1,5 +1,5 @@
-# Compile dnsmasq as a static binary (Tested working on Alpine v3.12)
-FROM	alpine:3.13 AS compile
+# Use Alpine image to build the static binary
+FROM	macgyverbass/base-label:alpine AS compile
 
 # Install all necessary packages for compiling dnsmasq
 RUN	apk --no-cache add	\
@@ -32,7 +32,7 @@ COPY	overlay/ /dnsmasq-root/
 
 
 # Build from scratch for smallest possible secure build
-FROM	scratch
+FROM	macgyverbass/base-label:scratch
 
 # Copy the previously compiled dnsmasq file and previously copied overlay folder
 COPY	--from=compile /dnsmasq.git/src/dnsmasq /dnsmasq-root/ /
