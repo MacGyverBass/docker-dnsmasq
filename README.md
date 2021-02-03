@@ -10,7 +10,7 @@ More information can be found here: <http://www.thekelleys.org.uk/dnsmasq/doc.ht
 
 ## Running this Docker image
 
-There are many uses for dnsmasq and can be ran in various configurations using different arguments.  Pleasae refer to the documentation regarding dnsmasq on the page mentioned in the previous section to run dnsmasq.  All arguments passed to the docker image will be passed directly to the dnsmasq executable.
+There are many uses for dnsmasq and can be ran in various configurations using different arguments.  Please refer to the documentation regarding dnsmasq on the page mentioned in the previous section to run dnsmasq.  All arguments passed to the docker image will be passed directly to the dnsmasq executable.
 
 Here is a basic example of running dnsmasq in Docker:
 
@@ -25,7 +25,7 @@ docker run \
  ${dnsmasq_arguments}
 ```
 
-In the above example, Docker will run the image detached and set to restart, unless stopped, if the system restarts with the container name "dnsmasq".  The "${dnsmasq_arguments}" are whatever arguments you decide to pass to the dnsmasq binary, in this example "--no-daemon --log-queries" is used.
+In the above example, Docker will run the image detached and set to restart (unless stopped) if the system restarts, with the container name "dnsmasq".  The "${dnsmasq_arguments}" are whatever arguments you decide to pass to the dnsmasq binary, in this example "--no-daemon --log-queries" is used.
 
 To see a list of options, you may use the `--help` argument to view the dnsmasq help text.  Here is an example of viewing that information:
 
