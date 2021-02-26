@@ -18,7 +18,7 @@ ARG	BRANCH="master"
 RUN	git clone --branch "${BRANCH}" --depth=1 "http://thekelleys.org.uk/git/dnsmasq.git" /dnsmasq.git/
 
 # Compile dnsmasq statically
-RUN	make -C /dnsmasq.git/ CFLAGS="-Os -nostdlib" LDFLAGS="-Os -static -no-pie"
+RUN	make -j$(nproc) -C /dnsmasq.git/ CFLAGS="-Os -nostdlib" LDFLAGS="-Os -static -no-pie"
 
 # Strip binary
 RUN	strip -s /dnsmasq.git/src/dnsmasq
