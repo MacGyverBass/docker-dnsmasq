@@ -15,7 +15,7 @@ RUN	apk --no-cache add	\
 ARG	BRANCH="master"
 
 # Clone the dnsmasq repo
-RUN	git clone --branch "${BRANCH}" --depth=1 "http://thekelleys.org.uk/git/dnsmasq.git" /dnsmasq.git/
+RUN	git clone --branch "${BRANCH}" "http://thekelleys.org.uk/git/dnsmasq.git" /dnsmasq.git/
 
 # Compile dnsmasq statically
 RUN	make -j$(nproc) -C /dnsmasq.git/ CFLAGS="-Os -nostdlib" LDFLAGS="-Os -static -no-pie"
