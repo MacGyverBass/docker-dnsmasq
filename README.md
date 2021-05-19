@@ -73,7 +73,7 @@ By default, this Docker image uses the latest dnsmasq branch (master) to build t
 
 Build arguments that are available:
 
-* `DNSMASQ_BRANCH` - This specifies the branch/tag to pull/checkout from the dnsmasq repository, which uses "master" by default.
+* `BRANCH` - This specifies the branch/tag to pull/checkout from the dnsmasq repository, which uses the main branch "master" by default.
 
 As noted above, you can specify a different dnsmasq branch/tag to pull/checkout to build a specific version of dnsmasq in the image.
 
