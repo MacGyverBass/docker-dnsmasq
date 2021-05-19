@@ -101,7 +101,7 @@ This is a multi-stage Docker image, done so to compile dnsmasq statically and pu
 
 To make the final build as small as possible, it then builds the image from scratch, adding only the required binary file to the final build.  The files /etc/group and /etc/passwd are also added to allow dnsmasq to run under the "nobody" user.
 
-The end result is a Docker image with only the files necessary to run dnsmasq.  Thus this image is very small (about 340kB at the time of writing).
+The end result is a Docker image with only the files necessary to run dnsmasq.  Thus this image is very small (about 181kB at the time of writing).
 
 ## Building/Advanced Usage
 
