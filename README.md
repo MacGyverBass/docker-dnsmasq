@@ -71,7 +71,7 @@ Note that if you are running the `dnsmasq` executable in your own Docker image a
 
 Currently, this Docker image applies the `--no-daemon` argument by default in the entrypoint, so this folder/volume is not required when running this image.
 
-More information regarding Docker Volumes can be found here: [Use Volumes](https://docs.docker.com/storage/volumes/)
+More information regarding Docker Volumes can be found here: [Docker Docs: Use Volumes](https://docs.docker.com/storage/volumes/)
 
 ## Network accessiblity
 
@@ -115,4 +115,4 @@ As noted above, you can specify a different dnsmasq branch/tag to pull/checkout 
 
 This may be useful for debugging or if your image requires a specific version of the dnsmasq binary file.
 
-More information on using Docker build-arguments can be found here:  [Set build-time variables (--build-arg)](https://docs.docker.com/engine/reference/commandline/build/#set-build-time-variables---build-arg)
+More information on using Docker build-arguments can be found here:  [Docker Docs: docker build -- Set build-time variables (--build-arg)](https://docs.docker.com/engine/reference/commandline/build/#set-build-time-variables---build-arg)
