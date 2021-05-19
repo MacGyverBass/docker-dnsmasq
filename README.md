@@ -15,7 +15,7 @@ There are many uses for dnsmasq and can be ran in various configurations using d
 Here is a basic example of running dnsmasq in Docker:
 
 ```bash
-dnsmasq_arguments="--no-daemon --log-queries"
+dnsmasq_arguments="--log-queries"
 
 docker run \
  --detach \
@@ -25,7 +25,7 @@ docker run \
  ${dnsmasq_arguments}
 ```
 
-In the above example, Docker will run the image detached and set to restart (unless stopped) if the system restarts, with the container name "dnsmasq".  The "${dnsmasq_arguments}" are whatever arguments you decide to pass to the dnsmasq binary, in this example "--no-daemon --log-queries" is used.
+In the above example, Docker will run the image detached and set to restart (unless stopped) if the system restarts, with the container name "dnsmasq".  The "${dnsmasq_arguments}" are whatever arguments you decide to pass to the dnsmasq binary, in this example "--log-queries" is used.
 
 To see a list of options, you may use the `--help` argument to view the dnsmasq help text.  Here is an example of viewing that information:
 
@@ -36,6 +36,42 @@ docker run --rm macgyverbass/dnsmasq:latest --help
 This will execute the Docker image, passing `--help` to the dnsmasq binary and upon exit will remove the container.
 
 Note that running the Docker image without any arguments will result in the version information being displayed.
+
+## Additional Notes for this Docker Image
+
+This Docker image uses a volume for the `dnsmasq.leases` file in the `/var/lib/misc/` folder.  You may choose to run this Docker image with a named volume or having the folder bind mounted to a local path.  Examples are below:
+
+```bash
+dnsmasq_arguments="--log-queries"
+
+docker run \
+ --detach \
+ --restart unless-stopped \
+ --name dnsmasq \
+ -v dnsmasq-leases:/var/lib/misc/ \
+ macgyverbass/dnsmasq:latest \
+ ${dnsmasq_arguments}
+```
+
+```bash
+dnsmasq_arguments="--log-queries"
+
+docker run \
+ --detach \
+ --restart unless-stopped \
+ --name dnsmasq \
+ -v /my-docker-data/dnsmasq-leases/:/var/lib/misc/ \
+ macgyverbass/dnsmasq:latest \
+ ${dnsmasq_arguments}
+```
+
+Mounting this volume isn't required, but the data within the volume (the `dnsmasq.leases` file) may not persist when the container is recreated/updated.  To keep the data persistent, consider using a named/bind mount for this folder.  Note that this folder/volume is not required if the `--leasefile-ro` argument is used.
+
+Note that if you are running the `dnsmasq` executable in your own Docker image as a daemon service (without the `--no-daemon` argument), the `/var/run/` folder is required.  This folder can be created in the image (if it does not already exist) or at image runtime using the same method as above using a volume for the `/var/run/` folder.
+
+Currently, this Docker image applies the `--no-daemon` argument by default in the entrypoint, so this folder/volume is not required when running this image.
+
+More information regarding Docker Volumes can be found here: [Use Volumes](https://docs.docker.com/storage/volumes/)
 
 ## Network accessiblity
 
@@ -48,7 +84,7 @@ If your devices do not need to detect/find the container running on the network,
 In some cases, the `NET_ADMIN` capability will need to be added to the docker run command using the docker run `--cap-add NET_ADMIN` argument.  For example:
 
 ```bash
-dnsmasq_arguments="--no-daemon --log-queries"
+dnsmasq_arguments="--log-queries"
 
 docker run \
  --detach \
