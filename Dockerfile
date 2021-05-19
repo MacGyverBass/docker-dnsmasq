@@ -37,7 +37,7 @@ FROM	macgyverbass/base-label:scratch
 COPY	--from=compile /dnsmasq.git/src/dnsmasq /dnsmasq-root/ /
 
 # The folder "/var/lib/misc/" is needed for the dnsmasq.leases file.  (Note that this isn't required if --leasefile-ro is used.)
-# The folder "/var/run/" is needed for the dnsmasq.pid file.  (Note that this isn't require if --no-daemon is used.)
+# The folder "/var/run/" is needed for the dnsmasq.pid file.  (Note that this isn't required if --no-daemon is used.)
 VOLUME	["/var/lib/misc/", "/var/run/"]
 
 # Define dnsmasq as our entrypoint
