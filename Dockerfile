@@ -4,11 +4,10 @@ FROM	macgyverbass/base-label:alpine AS compile
 # Install all necessary packages for compiling dnsmasq
 RUN	apk --no-cache add	\
 		git	\
-		build-base	\
+		make	\
+		gcc	\
+		musl-dev	\
 		linux-headers	\
-		gettext	\
-		pkgconf	\
-		python3	\
 		upx
 
 # Define branch to clone/checkout
